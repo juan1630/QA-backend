@@ -1,6 +1,8 @@
 const express = require('express');
 const userModel = require('../models/modelUser');
+const jwt = require('jsonwebtoken');
 
+const SEED = 'app-qa-moviles';
 
 const app = express();
 
@@ -8,7 +10,8 @@ app.post('/login', (req, res) => {
 
 
   let body = req.body;
-  console.log( body.email )
+  console.log( body )
+
   userModel.findOne({ email: body.email })
   .exec( (error, user) => {
       if(error){
@@ -28,13 +31,22 @@ app.post('/login', (req, res) => {
         })
       }
 
+      if(user){
+         let token = jwt.sign({
+            id:user.id,
+            user
+         }, SEED, {  expiresIn: 60 * 60 * 20 } );
 
-      return res.status(200)
-      .json({
-        ok:true,
-        message: 'uauario encontrado',
-        usuario: user
-      });
+        return res.status(200)
+        .json({
+          ok:true,
+          message: 'uauario encontrado',
+          token,
+          usuario: user
+        });
+
+      }
+
 
   })
 

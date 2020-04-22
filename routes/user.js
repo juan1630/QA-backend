@@ -15,10 +15,11 @@ app.post('/nuevo/usuario', (req, resp ) => {
   let User = new userModel({
     nombre: body.nombre,
     apellidoPaterno: body.apellidoPaterno,
-    apellidomaterno: body.apellidoMaterno,
+    apellidoMaterno: body.apellidoMaterno,
     instituto: body.instituto,
     email: body.email,
-    password: body.password
+    password: body.password,
+    passwordConfirm: body.passwordConfirm
 
   });
 

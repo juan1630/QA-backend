@@ -2,12 +2,14 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let newSchemaUser = new Schema({
-  nombre: { type: String, required: [true, 'El nombre es requerido'] }, // nombre completo
-  apellidoPaterno: { type: String,required: [true, 'El apellido es requerido'] },
+  nombre: { type: String }, // nombre completo
+  apellidoPaterno: { type: String },
   apellidoMaterno: { type: String },
-  instituto: { type: String,required: [true, 'El instituto es requerido'] },
-  password: { type: String, required:[true, 'La constrasenia es requerida'] },
-  email: { type: String, required: [true, 'El email es requerido'] }
+  instituto: { type: String },
+  email: { type: String  },
+  password: { type: String},
+  passwordConfirm: { type: String }
+
 });
 
 
